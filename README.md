@@ -11,7 +11,7 @@ Another workaround is to Disable `Allow the computer to turn off this device to 
 
 ### tl;dr 
 1. Install ffmpeg
-2. [Download]() the executable and run it.
+2. [Download](https://github.com/ndanilo8/razer-mic-keepalive/releases/download/v0.1/RazerMicKeepAlive.exe) the executable and run it.
 3. (Optional Autostart) Shortcut `RazerMicKeepAlive.exe`  to `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` folder
 
 
