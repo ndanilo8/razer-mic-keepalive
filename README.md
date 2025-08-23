@@ -15,16 +15,12 @@ Another workaround is to Disable `Allow the computer to turn off this device to 
 3. (Optional Autostart) Shortcut `RazerMicKeepAlive.exe`  to `%appdata%\Microsoft\Windows\Start Menu\Programs\Startup` folder
 
 
----
-
 ## Features
 
 - Tray icon with clean **Quit** button
 - Launches `ffmpeg` to keep mic active silently
 - Fully self-contained Go app (no GUI window)
 - Lighter than running OBS, Discord, etc..
-
----
 
 ## Getting Started (compile your own binary)
 
@@ -50,8 +46,6 @@ Look for your mic, e.g.:
 
 Copy that exact string.
 
----
-
 ### 3. Set Up the Project
 
 ```bash
@@ -67,7 +61,6 @@ Then edit `main.go` with the string above:
 micName := `Your Device Name Here`
 ```
 
----
 
 ### 4. Build the App
 
@@ -78,7 +71,6 @@ go build -ldflags="-H=windowsgui" -o RazerMicKeepAlive.exe main.go
 
 > `-H=windowsgui` ensures no terminal window pops up when you launch it.
 
----
 
 ## Run
 
@@ -90,20 +82,15 @@ Just double-click `RazerMicKeepAlive.exe`. It will:
 
 To stop it: Right-click tray icon → Quit
 
----
 
 ## Auto-Launch at Startup (Optional)
 
 - Press `Win + R`, type `shell:startup`
 - Place a shortcut to `RazerMicKeepAlive.exe` there
 
----
-
 ## License
 
 MIT — do whatever you want.
-
----
 
 ## Credits
 
