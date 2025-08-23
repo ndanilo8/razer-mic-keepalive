@@ -17,24 +17,24 @@ Another workaround is to Disable `Allow the computer to turn off this device to 
 
 ---
 
-## ✅ Features
+## Features
 
-- 🖥️ Tray icon with clean **Quit** button
-- 🎯 Launches `ffmpeg` to keep mic active silently
-- ⚙️ Fully self-contained Go app (no GUI window)
-- 🪶 Lighter than running OBS
+- Tray icon with clean **Quit** button
+- Launches `ffmpeg` to keep mic active silently
+- Fully self-contained Go app (no GUI window)
+- Lighter than running OBS, Discord, etc..
 
 ---
 
-## 🚀 Getting Started
+## Getting Started (compile your own binary)
 
-### 1. 📥 Install Requirements
+### 1. Install Requirements
 
 - [Go](https://golang.org/dl/) (1.20+)
 - [ffmpeg](https://ffmpeg.org/download.html) (add to PATH)
 
 
-### 2. 🔍 Find Your Microphone Name
+### 2. Find Your Microphone Name
 
 Run in terminal:
 
@@ -52,7 +52,7 @@ Copy that exact string.
 
 ---
 
-### 3. 🛠️ Set Up the Project
+### 3. Set Up the Project
 
 ```bash
 git clone https://github.com/ndanilo8/razer-mic-keepalive.git
@@ -69,7 +69,7 @@ micName := `Your Device Name Here`
 
 ---
 
-### 4. 🏗️ Build the Tray App
+### 4. Build the App
 
 ```bash
 go mod tidy
@@ -80,7 +80,7 @@ go build -ldflags="-H=windowsgui" -o RazerMicKeepAlive.exe main.go
 
 ---
 
-## ▶️ Run
+## Run
 
 Just double-click `RazerMicKeepAlive.exe`. It will:
 - Start `ffmpeg` in background
@@ -92,83 +92,20 @@ To stop it: Right-click tray icon → Quit
 
 ---
 
-## ❌ Stop ffmpeg Manually (Optional)
-
-If you want to kill `ffmpeg` manually from script or terminal:
-
-```bash
-taskkill /IM ffmpeg.exe /F
-```
-
----
-
-## 📂 Auto-Launch at Startup (Optional)
+## Auto-Launch at Startup (Optional)
 
 - Press `Win + R`, type `shell:startup`
 - Place a shortcut to `RazerMicKeepAlive.exe` there
 
 ---
 
-## 🧠 Why Not Use OBS, Discord?
-
-OBS keeps the mic open but:
-- Uses CPU/GPU
-- Always stays running visibly
-- Less elegant than a background tray tool
-
-
-This app does the same thing **in <1MB** and silently. Install and forget. Something that Razer doesn't know
-
----
-
-## 🧩 Root Cause Analysis: Why This Is Needed
-
-**tl;dr;** just google "Razer Blackshark Disconnects"
-
-Razer BlackShark V2 Pro wireless headsets are known to **randomly disconnect**, after using this headset the issues seems to be related to the **microphone is not actively being used** (e.g., not in a call or being recorded).
-
- 
-
-After deep investigation using:
-- 🪵 Windows **Event Viewer**
-- 🧪 `Get-PnpDevice`, Kernel-PnP logs, and System logs
-- 🔍 USB tracing tools (e.g., USBDeview)
-
-...its found:
-
-### ❌ No Device Disconnect Events from Windows
-
-- Windows continues to show the dongle as **connected and "OK"**
-- **No new PnP or driver crash events** are triggered during the disconnection
-- The only events visible are from **the first time the dongle was inserted**
-
-### ✅ Mic Disconnections Only Happen When Idle
-
-The headset **only disconnects** when the microphone is **not being used** by an application. If an app (like OBS, Discord, etc) holds the mic open:
-- The headset stays connected indefinitely
-- No dropouts or audio loss occur
-
-At least very rarely...
-
-### 🎯 Conclusion
-
-This strongly indicates:
-- The issue is **not caused by Windows**
-- It's likely due to **Razer's firmware or driver stack** entering an idle state and **failing to wake the microphone channel properly**
-- There’s **no system-level workaround**, because Windows never sees the device as "disconnected"
-
-> Razer fix your sh*t
-
----
-
-
-## 📄 License
+## License
 
 MIT — do whatever you want.
 
 ---
 
-## ✨ Credits
+## Credits
 
 - `systray` by [Lantern](https://github.com/getlantern/systray)
 - `ffmpeg` for the device-level capture
