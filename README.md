@@ -1,5 +1,5 @@
 
-# 🎤 Razer Mic Keep-Alive Tray App
+# Razer Mic Keep-Alive Tray App
 
 This tiny Go-based tray app prevents the **Razer BlackShark V2 Pro** wireless headset from disconnecting due to microphone inactivity.
 
